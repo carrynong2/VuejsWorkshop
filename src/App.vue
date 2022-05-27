@@ -11,6 +11,13 @@
       <li>{{ hobby[1] }}</li>
       <li>{{ hobby[2] }}</li>
     </ul>
+    <p>ข้อมูลพื้นฐาน :</p>
+    <ul>
+      <li>เพศ: {{ general.gender }}</li>
+      <li>น้ำหนัก: {{ general.weight }} kg</li>
+      <li>ส่วนสูง: {{ general.height }} cm</li>
+      <li>โรคประจำตัว: {{ general.status }}</li>
+    </ul>
   </section>
 </template>
 
@@ -27,6 +34,7 @@ export default {
       size: 150,
       social: "https://www.facebook.com/monthon.mukkun/",
       hobby: ["ทำสวน", "เล่นเกม", "ฟังเพลง"],
+      general: { gender: "ชาย", weight: 70.4, height: 170, status: false },
     };
   },
   methods: {
