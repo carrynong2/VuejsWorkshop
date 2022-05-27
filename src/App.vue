@@ -18,6 +18,9 @@
       <li>ส่วนสูง: {{ general.height }} cm</li>
       <li>โรคประจำตัว: {{ general.status }}</li>
     </ul>
+    <button @click="showData">คลิกเพื่อดูข้อมูล</button>
+    <button @click="increment(10)">เพิ่ม</button>
+    <button @click="decrement(5)">ลด</button>
   </section>
 </template>
 
@@ -40,6 +43,15 @@ export default {
   methods: {
     getFullName() {
       return `${this.firstName}  ${this.lastName}`;
+    },
+    showData() {
+      alert(this.firstName);
+    },
+    increment(value) {
+      this.age += value;
+    },
+    decrement(value) {
+      this.age -= value;
     },
   },
 };
