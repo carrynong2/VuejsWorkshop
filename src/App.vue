@@ -10,17 +10,12 @@
     <div v-else>
       <p>งานอดิเรก:</p>
       <ul>
-        <li>{{ hobby[0] }}</li>
-        <li>{{ hobby[1] }}</li>
-        <li>{{ hobby[2] }}</li>
+        <li v-for="(item, index) in hobby" :key="index">{{ item }}</li>
       </ul>
     </div>
     <p>ข้อมูลพื้นฐาน :</p>
     <ul>
-      <li>เพศ: {{ general.gender }}</li>
-      <li>น้ำหนัก: {{ general.weight }} kg</li>
-      <li>ส่วนสูง: {{ general.height }} cm</li>
-      <li>โรคประจำตัว: {{ general.status }}</li>
+      <li v-for="(item, key) in general" :key="key">{{ item }}</li>
     </ul>
   </section>
 </template>
@@ -37,7 +32,15 @@ export default {
       picture: "https://cdn-icons-png.flaticon.com/512/6970/6970635.png",
       size: 150,
       social: "https://www.facebook.com/monthon.mukkun/",
-      hobby: ["ทำสวน"],
+      hobby: [
+        "ทำสวน",
+        "เล่นเกม",
+        "ทำอาหาร",
+        "ดูทีวี",
+        "ท่องเน็ต",
+        "อ่านหนังสือ",
+        "เลี้ยงแมว",
+      ],
       general: { gender: "ชาย", weight: 70.4, height: 170, status: false },
     };
   },
