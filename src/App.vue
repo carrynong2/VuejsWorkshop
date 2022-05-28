@@ -1,10 +1,10 @@
 <template>
   <section>
-    <img :src="picture" :width="size" :height="size" /><br />
+    <img :src="picture" :width="size" :height="size" ref="imageEl" /><br />
 
     <form @submit.prevent="submitForm">
       <label>ป้อนชื่อเล่น:</label>
-      <input type="text" v-on:input="setNickName" />
+      <input type="text" ref="nickNameEl" />
       <button type="submit">บันทึก</button>
     </form>
     <h1>ชื่อ-นามสกุล : {{ getFullName() }}</h1>
@@ -61,11 +61,8 @@ export default {
     decrement(value) {
       this.age -= value;
     },
-    setNickName(event) {
-      this.nickName = event.target.value;
-    },
     submitForm() {
-      alert("บันทึกชื่อเล่นเรียบร้อย");
+      this.nickName = this.$refs.nickNameEl.value;
     },
   },
 };
