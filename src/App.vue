@@ -1,7 +1,9 @@
 <template>
   <section>
-    <img :src="picture" :width="size" :height="size" />
+    <img :src="picture" :width="size" :height="size" /><br />
+    ป้อนชื่อเล่น : <input type="text" v-on:input="setNickName" />
     <h1>ชื่อ-นามสกุล : {{ getFullName() }}</h1>
+    <h1>ชื่อเล่น : {{ nickName }}</h1>
     <h1>อายุ : {{ age }} ปี</h1>
     <p>ที่อยู่ : <span v-html="address"></span></p>
     <p>Social : <a :href="social" target="_blank">Facebook</a></p>
@@ -31,6 +33,7 @@ export default {
     return {
       firstName: "Dev",
       lastName: "CarryNong",
+      nickName: "",
       age: 25,
       address: "<i>กรุงเทพมหานคร</i>",
       picture: "https://cdn-icons-png.flaticon.com/512/6970/6970635.png",
@@ -52,6 +55,9 @@ export default {
     },
     decrement(value) {
       this.age -= value;
+    },
+    setNickName(event) {
+      this.nickName = event.target.value;
     },
   },
 };
