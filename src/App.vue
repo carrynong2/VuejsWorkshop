@@ -1,7 +1,12 @@
 <template>
   <section>
     <img :src="picture" :width="size" :height="size" /><br />
-    ป้อนชื่อเล่น : <input type="text" v-on:input="setNickName" />
+
+    <form @submit.prevent="submitForm">
+      <label>ป้อนชื่อเล่น:</label>
+      <input type="text" v-on:input="setNickName" />
+      <button type="submit">บันทึก</button>
+    </form>
     <h1>ชื่อ-นามสกุล : {{ getFullName() }}</h1>
     <h1>ชื่อเล่น : {{ nickName }}</h1>
     <h1>อายุ : {{ age }} ปี</h1>
@@ -21,8 +26,8 @@
       <li>โรคประจำตัว: {{ general.status }}</li>
     </ul>
     <button @click="showData">คลิกเพื่อดูข้อมูล</button>
-    <button @click="increment(10)">เพิ่ม</button>
-    <button @click="decrement(5)">ลด</button>
+    <button @click.ctrl="increment(10)">เพิ่ม</button>
+    <button @click.middle="decrement(5)">ลด</button>
   </section>
 </template>
 
@@ -58,6 +63,9 @@ export default {
     },
     setNickName(event) {
       this.nickName = event.target.value;
+    },
+    submitForm() {
+      alert("บันทึกชื่อเล่นเรียบร้อย");
     },
   },
 };
