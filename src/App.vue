@@ -4,19 +4,24 @@
 
     <h1>ชื่อ-นามสกุล : {{ getFullName() }}</h1>
     <h1>อายุ : {{ age }} ปี</h1>
-    <p>ที่อยู่ : <span v-html="address"></span></p>
-    <p>Social : <a :href="social" target="_blank">Facebook</a></p>
-    <p v-if="hobby.length === 0">ไม่มีงานอดิเรก</p>
-    <div v-else>
-      <p>งานอดิเรก:</p>
+    <button @click="toggleVisible">
+      {{ isVisible ? "ซ่อน" : "แสดง" }}รายละเอียด
+    </button>
+    <article v-show="isVisible">
+      <p>ที่อยู่ : <span v-html="address"></span></p>
+      <p>Social : <a :href="social" target="_blank">Facebook</a></p>
+      <p v-if="hobby.length === 0">ไม่มีงานอดิเรก</p>
+      <div v-else>
+        <p>งานอดิเรก:</p>
+        <ul>
+          <li v-for="(item, index) in hobby" :key="index">{{ item }}</li>
+        </ul>
+      </div>
+      <p>ข้อมูลพื้นฐาน :</p>
       <ul>
-        <li v-for="(item, index) in hobby" :key="index">{{ item }}</li>
+        <li v-for="(item, key) in general" :key="key">{{ item }}</li>
       </ul>
-    </div>
-    <p>ข้อมูลพื้นฐาน :</p>
-    <ul>
-      <li v-for="(item, key) in general" :key="key">{{ item }}</li>
-    </ul>
+    </article>
   </section>
 </template>
 
@@ -42,11 +47,15 @@ export default {
         "เลี้ยงแมว",
       ],
       general: { gender: "ชาย", weight: 70.4, height: 170, status: false },
+      isVisible: false,
     };
   },
   methods: {
     getFullName() {
       return `${this.firstName}  ${this.lastName}`;
+    },
+    toggleVisible() {
+      this.isVisible = !this.isVisible;
     },
   },
 };
