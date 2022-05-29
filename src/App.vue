@@ -2,8 +2,11 @@
   <section>
     <img :src="picture" :width="size" :height="size" ref="imageEl" /><br />
 
-    <h1>ชื่อ-นามสกุล : {{ getFullName() }}</h1>
+    <h1>ชื่อ-นามสกุล : {{ getFullName }}</h1>
     <h1>อายุ : {{ age }} ปี</h1>
+    <h1>เงินเดือน : {{ salary }} บาท</h1>
+    <h1>ตำแหน่งงาน : {{ getDepartment }}</h1>
+    <button @click="addSalary(5000)">เพิ่มเงินเดือน</button>
     <button @click="toggleVisible">
       {{ isVisible ? "ซ่อน" : "แสดง" }}รายละเอียด
     </button>
@@ -48,14 +51,26 @@ export default {
       ],
       general: { gender: "ชาย", weight: 70.4, height: 170, status: false },
       isVisible: false,
+      salary: 10000,
     };
   },
   methods: {
+    toggleVisible() {
+      this.isVisible = !this.isVisible;
+    },
+    addSalary(value) {
+      this.salary += value;
+    },
+  },
+  computed: {
     getFullName() {
       return `${this.firstName}  ${this.lastName}`;
     },
-    toggleVisible() {
-      this.isVisible = !this.isVisible;
+    getIncome() {
+      return this.salary * 12;
+    },
+    getDepartment() {
+      return this.salary >= 35000 ? "Project manager" : "Programmer";
     },
   },
 };
