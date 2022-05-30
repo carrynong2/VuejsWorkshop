@@ -1,7 +1,6 @@
 <template>
   <section>
     <img :src="picture" :width="size" :height="size" ref="imageEl" /><br />
-
     <h1>ชื่อ-นามสกุล : {{ getFullName }}</h1>
     <h1>อายุ : {{ age }} ปี</h1>
     <h1>เงินเดือน : {{ salary }} บาท</h1>
